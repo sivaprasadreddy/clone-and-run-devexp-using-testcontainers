@@ -1,5 +1,6 @@
 package com.sivalabs.demo;
 
+import org.springframework.boot.devtools.restart.RestartScope;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Bean;
@@ -12,13 +13,15 @@ public class ContainersConfig {
 
     @Bean
     @ServiceConnection
+    @RestartScope
     PostgreSQLContainer<?> postgres() {
-        return new PostgreSQLContainer<>("postgres:15-alpine");
+        return new PostgreSQLContainer<>("postgres:15-alpine").withReuse(true);
     }
 
     @Bean
     @ServiceConnection
+    @RestartScope
     KafkaContainer kafka() {
-        return new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.2.1"));
+        return new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.5.0")).withReuse(true);
     }
 }
