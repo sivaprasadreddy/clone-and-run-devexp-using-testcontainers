@@ -19,7 +19,7 @@ import org.springframework.test.context.ActiveProfiles;
 @ActiveProfiles("test")
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @Import(ContainersConfig.class)
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -40,6 +40,6 @@ public class ProductControllerTest {
     void shouldGetProductByCode() {
         Product product = restTemplate.getForObject("/api/products/{code}", Product.class, productCode);
         assertThat(product.getCode()).isEqualTo(productCode);
-        assertThat(product.getPrice().compareTo(BigDecimal.TEN)).isEqualTo(0);
+        assertThat(product.getPrice().compareTo(BigDecimal.TEN) == 0).isTrue();
     }
 }

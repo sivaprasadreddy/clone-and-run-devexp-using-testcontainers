@@ -37,7 +37,7 @@ class ProductEventListenerTest {
     @BeforeEach
     void setUp() {
         productCode = UUID.randomUUID().toString();
-        Product product = new Product(null, productCode, "Test Product 999", BigDecimal.TEN);
+        Product product = new Product(null, productCode, "Test Product", BigDecimal.TEN);
         productRepository.save(product);
     }
 
@@ -48,14 +48,12 @@ class ProductEventListenerTest {
 
         kafkaTemplate.send(PRODUCT_PRICE_CHANGES_TOPIC, event);
 
-        Product product = productRepository.findByCode(productCode).orElseThrow();
-        product.setPrice(newPrice);
-
         await().pollInterval(Duration.ofSeconds(3)).atMost(10, SECONDS).untilAsserted(() -> {
             Optional<Product> optionalProduct = productRepository.findByCode(productCode);
             assertThat(optionalProduct).isPresent();
             assertThat(optionalProduct.get().getCode()).isEqualTo(productCode);
-            assertThat(optionalProduct.get().getPrice().compareTo(newPrice)).isEqualTo(0);
+            assertThat(optionalProduct.get().getPrice().compareTo(newPrice) == 0)
+                    .isTrue();
         });
     }
 }

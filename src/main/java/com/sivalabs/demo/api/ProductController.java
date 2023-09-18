@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/products")
-public class ProductController {
+class ProductController {
     private final ProductRepository repository;
 
-    public ProductController(ProductRepository repository) {
+    ProductController(ProductRepository repository) {
         this.repository = repository;
     }
 
