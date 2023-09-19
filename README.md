@@ -1,15 +1,20 @@
 # Clone and Run Developer experience using Testcontainers
 
-This is a sample Spring Boot application demonstrating how to use Testcontainers 
+The sample Spring Boot application used for demonstrating how to use Testcontainers 
 for having a simplified local development experience. 
 
-The best experience would be to simply clone and run the application without having to do any manual setup.
+[![Clone and Run Developer experience using Testcontainers](https://img.youtube.com/vi/PWTKMVb4HIY/0.jpg)](https://www.youtube.com/watch?v=PWTKMVb4HIY)
 
 ## Prerequisites
 * Java 17+. [Installation using SDKMAN](https://sdkman.io/)
 * Docker. [Installation Instructions](https://docs.docker.com/get-docker/)
 
 ## Getting Started with the application
+The application is a Spring Boot project that interacts with PostgreSQL and Kafka.
+
+![Spring Boot Application](app.png)
+
+The best experience would be to simply clone and run the application without having to do any manual setup.
 
 ```shell
 $ git clone https://github.com/sivaprasadreddy/clone-and-run-devexp-using-testcontainers.git
